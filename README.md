@@ -4,11 +4,11 @@
 
 Hello!
 
-Play Packet's API is a REST API built using Node.js accompanied with Express/Knex(Postgres)
+Med Tracker's API is a REST API built using Node.js accompanied with Express/Knex(Postgres)
 that is used to:
 
-A) Store Users House Rules for board games
-B) Users can also search other User's rules
+A) Store Users notes for their medications
+B) Users can also search other User's notes, to help with charing side effects etc.
 C) Users can add searched rules to their collections
 
 ### Technology Used
@@ -79,8 +79,8 @@ the database.  JSON Web Tokens are used to hash the password
 
 #### Games Endpoints
 
-The User currently cannot POST games, all of that comes from what is already in the database
-The user will get the games 1 of 3 ways, all games will output in the following format:
+The User currently cannot POST types of medication, all of that comes from what is already in the database
+The user will get the notes 1 of 3 ways, all notes will output in the following format:
 
 ```json
 [
@@ -97,19 +97,19 @@ There are 3 GET requests:
 GET /api/games/all
 ```
 
-As the title suggests, returns all games in the database
+As the title suggests, returns all medication types in the database
 
 ```
 GET /api/games
 ```
 
-This will return the user's games (user id required through middleware)
+This will return the user's medication types (user id required through middleware)
 
 ```
 GET /api/games/:game_id
 ```
 
-This will return one singular game based on id
+This will return one singular medication type based on id
 
 ### Rules Endpoints
 
@@ -133,26 +133,26 @@ The rest will just return status codes based on endpoint.  JSON data will be ret
 GET /api/rules
 ```
 
-Returns all Rules
+Returns all notes
 
 ```
 GET /api/rules/games/:game_id
 ```
 
-Returns all of the user's rules (user id obtained through middleware) for the specific game
+Returns all of the user's notes (user id obtained through middleware) for the specific medication type
 
 ```
 GET /api/rules/search/:game_id
 ```
 
-The opposite of the last GET, this returns all games that are NOT assigned to the user
+The opposite of the last GET, this returns all medication types that are NOT assigned to the user
 
 ```
 POST /api/rules
 ```
 
-This will create a new user rule.  user_id and game_id for assigning obtained through middleware
-will also manually to the join table for games assigned to that user
+This will create a new user note.  user_id and game_id for assigning obtained through middleware
+will also manually to the join table for medication types assigned to that user
 
 | Body Key    | Type        | Description |
 | ----------- | ----------- | ----------- |
@@ -163,13 +163,13 @@ will also manually to the join table for games assigned to that user
 PATCH /api/rules/:rule_id
 ```
 
-Has same requirements as above but for updating the user's rule for tweaks
+Has same requirements as above but for updating the user's notes for tweaks
 
 ```
 DELETE /api/rules/:rule_id
 ```
 
-Removes the rule
+Removes the note
 
 *note, DELETE and PATCH require that the user's id matches the rule's assigned user*
 
@@ -186,7 +186,3 @@ Right Routine returns the following status codes in its API:
 | 404 | `NOT FOUND` |
 | 500 | `INTERNAL SERVER ERROR` |
 
-
-### Want to say Hi?
-
-For all inquiries or job leads (*hint*), please reach out to me at ian@rbruns.com!
