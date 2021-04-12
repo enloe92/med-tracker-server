@@ -97,7 +97,7 @@ There are 3 GET requests:
 GET /api/games/all
 ```
 
-As the title suggests, returns all medication types in the database
+returns all medication types in the database
 
 ```
 GET /api/games
